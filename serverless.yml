@@ -1,0 +1,13 @@
+service: chat-server-lambda
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-central-1
+functions:
+  app:
+    handler: server.run
+    events:
+      - http:
+          path: /
+          method: ANY
+          cors: true
