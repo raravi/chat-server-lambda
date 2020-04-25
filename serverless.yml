@@ -9,13 +9,13 @@ provider:
   region: eu-central-1
   environment:
     NODE_ENV: ${self:custom.secrets.NODE_ENV}
-    CHATAPP_DB: ${self:custom.secrets.CHATAPP_DB}
-    CHATAPP_SECRETORKEY: ${self:custom.secrets.CHATAPP_SECRETORKEY}
-    CHATAPP_EMAIL: ${self:custom.secrets.CHATAPP_EMAIL}
-    CHATAPP_PASSWORD: ${self:custom.secrets.CHATAPP_PASSWORD}
-    CHATAPP_RESETEMAIL: ${self:custom.secrets.CHATAPP_RESETEMAIL}
-    CHATAPP_RESETLINK: ${self:custom.secrets.CHATAPP_RESETLINK}
-    CHATAPP_CLIENTURL: ${self:custom.secrets.CHATAPP_CLIENTURL}
+    APP_DB: ${self:custom.secrets.APP_DB}
+    APP_SECRETORKEY: ${self:custom.secrets.APP_SECRETORKEY}
+    APP_EMAIL: ${self:custom.secrets.APP_EMAIL}
+    APP_PASSWORD: ${self:custom.secrets.APP_PASSWORD}
+    APP_RESETEMAIL: ${self:custom.secrets.APP_RESETEMAIL}
+    APP_RESETLINK: ${self:custom.secrets.APP_RESETLINK}
+    APP_CLIENTURL: ${self:custom.secrets.APP_CLIENTURL}
 functions:
   app:
     handler: server.run
