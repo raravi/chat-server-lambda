@@ -1,8 +1,21 @@
 service: chat-server-lambda
+
+custom:
+  secrets: ${file(secrets.json)}
+
 provider:
   name: aws
   runtime: nodejs12.x
   region: eu-central-1
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV}
+    CHATAPP_DB: ${self:custom.secrets.CHATAPP_DB}
+    CHATAPP_SECRETORKEY: ${self:custom.secrets.CHATAPP_SECRETORKEY}
+    CHATAPP_EMAIL: ${self:custom.secrets.CHATAPP_EMAIL}
+    CHATAPP_PASSWORD: ${self:custom.secrets.CHATAPP_PASSWORD}
+    CHATAPP_RESETEMAIL: ${self:custom.secrets.CHATAPP_RESETEMAIL}
+    CHATAPP_RESETLINK: ${self:custom.secrets.CHATAPP_RESETLINK}
+    CHATAPP_CLIENTURL: ${self:custom.secrets.CHATAPP_CLIENTURL}
 functions:
   app:
     handler: server.run
@@ -11,3 +24,10 @@ functions:
           path: /
           method: ANY
           cors: true
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors: true
+
+plugins:
+  - serverless-offline
