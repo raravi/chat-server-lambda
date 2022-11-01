@@ -1,11 +1,14 @@
+org: raravi
+app: chat-server-lambda
 service: chat-server-lambda
+frameworkVersion: ^3.23.0
 
 custom:
   secrets: ${file(secrets.json)}
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs16.x
   region: eu-central-1
   environment:
     NODE_ENV: ${self:custom.secrets.NODE_ENV}
@@ -15,7 +18,9 @@ provider:
     APP_PASSWORD: ${self:custom.secrets.APP_PASSWORD}
     APP_RESETEMAIL: ${self:custom.secrets.APP_RESETEMAIL}
     APP_RESETLINK: ${self:custom.secrets.APP_RESETLINK}
+    APP_VALIDATELINK: ${self:custom.secrets.APP_VALIDATELINK}
     APP_CLIENTURL: ${self:custom.secrets.APP_CLIENTURL}
+
 functions:
   app:
     handler: server.run
